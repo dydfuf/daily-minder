@@ -75,7 +75,11 @@ function TodoForm({ todos }: { todos: Todo[] }) {
       <form
         onSubmit={(e) => {
           e.preventDefault();
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-expect-error
           addTodo(e.target[0].value);
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-expect-error
           e.target[0].value = "";
         }}
       >
