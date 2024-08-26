@@ -3,9 +3,11 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import "./index.css";
 import { Button } from "./components/ui/button";
+import { Toaster as SonnerToaster } from "./components/ui/sonner";
+import { Toaster } from "./components/ui/toaster";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   return (
     <>
@@ -30,6 +32,8 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
       <Button>hello world</Button>
+      <SonnerToaster />
+      <Toaster />
     </>
   );
 }
