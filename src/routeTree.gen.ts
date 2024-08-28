@@ -14,6 +14,7 @@ import { createFileRoute } from '@tanstack/react-router'
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as InstantImport } from './routes/instant'
+import { Route as EditorImport } from './routes/editor'
 import { Route as IndexImport } from './routes/index'
 
 // Create Virtual Routes
@@ -32,6 +33,11 @@ const InstantRoute = InstantImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const EditorRoute = EditorImport.update({
+  path: '/editor',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const IndexRoute = IndexImport.update({
   path: '/',
   getParentRoute: () => rootRoute,
@@ -46,6 +52,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/editor': {
+      id: '/editor'
+      path: '/editor'
+      fullPath: '/editor'
+      preLoaderRoute: typeof EditorImport
       parentRoute: typeof rootRoute
     }
     '/instant': {
@@ -69,6 +82,7 @@ declare module '@tanstack/react-router' {
 
 export const routeTree = rootRoute.addChildren({
   IndexRoute,
+  EditorRoute,
   InstantRoute,
   AboutLazyRoute,
 })
@@ -82,12 +96,16 @@ export const routeTree = rootRoute.addChildren({
       "filePath": "__root.tsx",
       "children": [
         "/",
+        "/editor",
         "/instant",
         "/about"
       ]
     },
     "/": {
       "filePath": "index.tsx"
+    },
+    "/editor": {
+      "filePath": "editor.tsx"
     },
     "/instant": {
       "filePath": "instant.tsx"

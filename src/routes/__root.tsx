@@ -14,6 +14,9 @@ export const Route = createRootRoute({
         <Link to="/instant" className="[&.active]:font-bold">
           Instant
         </Link>
+        <Link to="/editor" className="[&.active]:font-bold">
+          Editor
+        </Link>
       </div>
       <hr />
       <Outlet />
