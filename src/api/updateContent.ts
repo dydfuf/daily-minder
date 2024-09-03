@@ -7,5 +7,5 @@ interface UpdateContentParams {
 }
 
 export const updateContent = async ({ day, content }: UpdateContentParams) => {
-  return await supabase.from("content").upsert({ content }).eq("day", day);
+  return await supabase.from("content").update({ content }).eq("day", day);
 };
