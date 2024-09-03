@@ -8,6 +8,7 @@ import {
   type JSONContent,
   EditorCommandList,
   EditorBubble,
+  EditorInstance,
 } from "novel";
 import { ImageResizer, handleCommandNavigation } from "novel/extensions";
 import { defaultExtensions } from "./extensions";
@@ -20,17 +21,31 @@ import { slashCommand, suggestionItems } from "./slash-command";
 import { handleImageDrop, handleImagePaste } from "novel/plugins";
 import { uploadFn } from "./image-upload";
 import { Separator } from "@/components/ui/separator";
+import { useDebouncedCallback } from "use-debounce";
 
 const extensions = [...defaultExtensions, slashCommand];
 
 interface EditorProp {
   initialValue?: JSONContent;
   onChange: (value: JSONContent) => void;
+  debounceUpdateTime?: number;
 }
-const Editor = ({ initialValue, onChange }: EditorProp) => {
+const Editor = ({
+  initialValue,
+  onChange,
+  debounceUpdateTime = 500,
+}: EditorProp) => {
   const [openNode, setOpenNode] = useState(false);
   const [openColor, setOpenColor] = useState(false);
   const [openLink, setOpenLink] = useState(false);
+
+  const debouncedUpdates = useDebouncedCallback(
+    async (editor: EditorInstance) => {
+      const json = editor.getJSON();
+      onChange?.(json);
+    },
+    debounceUpdateTime
+  );
 
   return (
     <EditorRoot>
@@ -50,7 +65,7 @@ const Editor = ({ initialValue, onChange }: EditorProp) => {
           },
         }}
         onUpdate={({ editor }) => {
-          onChange(editor.getJSON());
+          debouncedUpdates(editor);
         }}
         slotAfter={<ImageResizer />}
       >
