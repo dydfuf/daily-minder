@@ -14,7 +14,6 @@ import { createFileRoute } from '@tanstack/react-router'
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as LoginImport } from './routes/login'
-import { Route as InstantImport } from './routes/instant'
 import { Route as EditorImport } from './routes/editor'
 import { Route as IndexImport } from './routes/index'
 
@@ -31,11 +30,6 @@ const AboutLazyRoute = AboutLazyImport.update({
 
 const LoginRoute = LoginImport.update({
   path: '/login',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const InstantRoute = InstantImport.update({
-  path: '/instant',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -67,13 +61,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EditorImport
       parentRoute: typeof rootRoute
     }
-    '/instant': {
-      id: '/instant'
-      path: '/instant'
-      fullPath: '/instant'
-      preLoaderRoute: typeof InstantImport
-      parentRoute: typeof rootRoute
-    }
     '/login': {
       id: '/login'
       path: '/login'
@@ -96,7 +83,6 @@ declare module '@tanstack/react-router' {
 export const routeTree = rootRoute.addChildren({
   IndexRoute,
   EditorRoute,
-  InstantRoute,
   LoginRoute,
   AboutLazyRoute,
 })
@@ -111,7 +97,6 @@ export const routeTree = rootRoute.addChildren({
       "children": [
         "/",
         "/editor",
-        "/instant",
         "/login",
         "/about"
       ]
@@ -121,9 +106,6 @@ export const routeTree = rootRoute.addChildren({
     },
     "/editor": {
       "filePath": "editor.tsx"
-    },
-    "/instant": {
-      "filePath": "instant.tsx"
     },
     "/login": {
       "filePath": "login.tsx"
