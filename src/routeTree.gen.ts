@@ -13,6 +13,7 @@ import { createFileRoute } from '@tanstack/react-router'
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as LoginImport } from './routes/login'
 import { Route as InstantImport } from './routes/instant'
 import { Route as EditorImport } from './routes/editor'
 import { Route as IndexImport } from './routes/index'
@@ -27,6 +28,11 @@ const AboutLazyRoute = AboutLazyImport.update({
   path: '/about',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/about.lazy').then((d) => d.Route))
+
+const LoginRoute = LoginImport.update({
+  path: '/login',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const InstantRoute = InstantImport.update({
   path: '/instant',
@@ -68,6 +74,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof InstantImport
       parentRoute: typeof rootRoute
     }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginImport
+      parentRoute: typeof rootRoute
+    }
     '/about': {
       id: '/about'
       path: '/about'
@@ -84,6 +97,7 @@ export const routeTree = rootRoute.addChildren({
   IndexRoute,
   EditorRoute,
   InstantRoute,
+  LoginRoute,
   AboutLazyRoute,
 })
 
@@ -98,6 +112,7 @@ export const routeTree = rootRoute.addChildren({
         "/",
         "/editor",
         "/instant",
+        "/login",
         "/about"
       ]
     },
@@ -109,6 +124,9 @@ export const routeTree = rootRoute.addChildren({
     },
     "/instant": {
       "filePath": "instant.tsx"
+    },
+    "/login": {
+      "filePath": "login.tsx"
     },
     "/about": {
       "filePath": "about.lazy.tsx"
