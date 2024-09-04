@@ -1,3 +1,5 @@
+import { signOut } from "@/api/user/signOut";
+import { Button } from "@/components/ui/button";
 import { createRootRoute, Link, Outlet } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 
@@ -17,6 +19,7 @@ export const Route = createRootRoute({
         <Link to="/editor" className="[&.active]:font-bold">
           Editor
         </Link>
+        <Button onClick={signOut}>Sign Out</Button>
       </div>
       <hr />
       <Outlet />
