@@ -33,9 +33,10 @@ export type OtpFormSchemaType = z.infer<typeof OtpFormSchema>;
 
 interface OtpFormProps {
   onSubmit: (value: OtpFormSchemaType) => void;
+  isLoading: boolean;
 }
 
-export function OtpForm({ onSubmit }: OtpFormProps) {
+export function OtpForm({ onSubmit, isLoading }: OtpFormProps) {
   const form = useForm<OtpFormSchemaType>({
     resolver: zodResolver(OtpFormSchema),
     defaultValues: {
@@ -83,7 +84,7 @@ export function OtpForm({ onSubmit }: OtpFormProps) {
               />
             </CardContent>
             <CardFooter>
-              <Button className="w-full" type="submit">
+              <Button className="w-full" type="submit" loading={isLoading}>
                 인증하기
               </Button>
             </CardFooter>

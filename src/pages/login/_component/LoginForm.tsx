@@ -31,9 +31,10 @@ export type LoginFormSchemaType = z.infer<typeof LoginFormSchema>;
 
 interface LoginFormProps {
   onSubmit: (value: LoginFormSchemaType) => void;
+  isLoading: boolean;
 }
 
-export function LoginForm({ onSubmit }: LoginFormProps) {
+export function LoginForm({ onSubmit, isLoading }: LoginFormProps) {
   const form = useForm<LoginFormSchemaType>({
     resolver: zodResolver(LoginFormSchema),
     defaultValues: {
@@ -68,7 +69,7 @@ export function LoginForm({ onSubmit }: LoginFormProps) {
               />
             </CardContent>
             <CardFooter>
-              <Button className="w-full" type="submit">
+              <Button className="w-full" type="submit" loading={isLoading}>
                 로그인
               </Button>
             </CardFooter>
