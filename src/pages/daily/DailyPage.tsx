@@ -73,5 +73,5 @@ export default function DailyPage() {
 }
 
 const EditorSkeleton = () => {
-  return <Skeleton className="w-full h-[600px]" />;
+  return <Skeleton className="w-full h-[300px]" />;
 };
