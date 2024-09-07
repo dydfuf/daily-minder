@@ -110,6 +110,9 @@ importers:
       '@tanstack/react-table':
         specifier: ^8.20.5
         version: 8.20.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@tanstack/router-zod-adapter':
+        specifier: ^1.56.5
+        version: 1.56.5(@tanstack/react-router@1.50.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(zod@3.23.8)
       class-variance-authority:
         specifier: ^0.7.0
         version: 0.7.0
@@ -1703,6 +1706,13 @@ packages:
         optional: true
       webpack:
         optional: true
+
+  '@tanstack/router-zod-adapter@1.56.5':
+    resolution: {integrity: sha512-z5uImI88kNB+zG4ztpdof9CelZFaE9+ugXXtD7jNeCpwyCU04h86tFuQQTRCSVtB5Gpe6zRHYLfZZ0NSsvaEYA==}
+    engines: {node: '>=12'}
+    peerDependencies:
+      '@tanstack/react-router': '>=1.43.2'
+      zod: '>=3'
 
   '@tanstack/store@0.5.5':
     resolution: {integrity: sha512-EOSrgdDAJExbvRZEQ/Xhh9iZchXpMN+ga1Bnk8Nmygzs8TfiE6hbzThF+Pr2G19uHL6+DTDTHhJ8VQiOd7l4tA==}
@@ -5192,6 +5202,11 @@ snapshots:
       vite: 5.4.2(@types/node@20.15.0)
     transitivePeerDependencies:
       - supports-color
+
+  '@tanstack/router-zod-adapter@1.56.5(@tanstack/react-router@1.50.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(zod@3.23.8)':
+    dependencies:
+      '@tanstack/react-router': 1.50.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      zod: 3.23.8
 
   '@tanstack/store@0.5.5': {}
 
